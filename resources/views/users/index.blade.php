@@ -12,6 +12,12 @@
         <h3 class="card-title">Users</h3>
     </div>
     <div class="card-body">
+    <form action="{{ route('users.index') }}" method="GET" class="form-inline mb-3">
+        <div class="form-group">
+            <input type="text" name="phone" class="form-control" placeholder="Search by phone" value="{{ request('phone') }}">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>

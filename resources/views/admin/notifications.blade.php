@@ -13,7 +13,7 @@
     @else
         <div class="list-group">
             @foreach($notifications as $notification)
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" data-notification-id="{{ $notification->id }}">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ $notification->type }}</h5>
                         <small>{{ $notification->created_at->diffForHumans() }}</small>
@@ -31,7 +31,7 @@
 <script>
     document.querySelectorAll('.list-group-item').forEach(item => {
         item.addEventListener('click', function() {
-            const notificationId = this.dataset.notificationId; // Make sure to add `data-notification-id` in your a tag if needed
+            const notificationId = this.dataset.notificationId; 
             fetch(`/mark-notification-as-read/${notificationId}`, {
                 method: 'POST',
                 headers: {

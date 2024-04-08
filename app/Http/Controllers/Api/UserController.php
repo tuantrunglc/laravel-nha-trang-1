@@ -49,10 +49,25 @@ class UserController extends Controller
 
             $token = $user->createToken('PersonalAccess')->plainTextToken;
 
-            return response()->json(['token' => $token], 200);
+            return response()->json(['user' => $user, 'token' => $token], 200);
         } else {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
+    }
+    public function update(Request $request)
+    {
+        $user = Auth::user(); // Lấy người dùng đang đăng nhập
+
+        $validatedData = $request->validate([
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'address' => 'required|string',
+            'contact_phone' => 'required|string',
+            'recipient_name' => 'required|string'
+        ]);
+
+        $user->update($validatedData);
+
+        return response()->json(['message' => 'User updated successfully.', 'user' => $user]);
     }
 }

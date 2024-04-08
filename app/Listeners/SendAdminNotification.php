@@ -22,7 +22,7 @@ class SendAdminNotification
     {
         Notification::create([
             'type' => 'new_order',
-            'message' => 'New order received: Order ID '.$event->order->id,
+            'message' => 'New order received: Order ID '.$event->order->id.' And Phone of User '.$event->order->user->phone,
             'read' => false,
         ]);
     }

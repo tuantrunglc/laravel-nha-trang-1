@@ -34,6 +34,7 @@
                     </x-slot>
 
                     <x-slot name="content">
+                    <x-notification-menu :notifications="$notifications"/>
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>

@@ -24,6 +24,9 @@ class User extends Authenticatable
         'phone',
         'wallet',
         'level',
+        'address', 
+        'contact_phone', 
+        'recipient_name'
     ];
 
     /**
@@ -45,4 +48,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    public function updateWallet($amount, $operation, $description = null)
+    {
+        $oldBalance = $this->wallet;
+        if ($operation === 'credit') {
+            $this->wallet += $amount;
+        } else {
+            $this->wallet -= $amount;
+        }
+        $this->save();
+
+        $this->walletHistories()->create([
+            'amount' => $amount,
+            'balance_after' => $this->wallet,
+            'operation' => $operation,
+            'description' => $description
+        ]);
+    }
 }

@@ -27,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('notifications', Notification::where('read', false)->get());
         });
+        view()->composer('adminlte::page', \App\Http\ViewComposers\NotificationComposer::class);
     }
 }

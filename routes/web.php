@@ -40,9 +40,9 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/orders/{id}/complete', [OrderController::class, 'complete'])->name('orders.complete');
 
     Route::get('/users/block/{id}', [UserController::class, 'block'])->name('users.block');
-    Route::post('/mark-notification-as-read/{id}', [App\Http\Controllers\Admin\NotificationController::class, 'markAsRead']);
+    Route::post('/mark-notification-as-read/{id}', [App\Http\Controllers\NotificationController::class, 'markAsRead']);
     Route::post('/orders/{order}/reject', [OrderController::class, 'reject'])->name('orders.reject');
-    Route::get('/admin/notifications', [App\Http\Controllers\Admin\NotificationController::class, 'index'])->name('admin.notifications');
+    Route::get('/admin/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('admin.notifications');
 });
 
 require __DIR__.'/auth.php';

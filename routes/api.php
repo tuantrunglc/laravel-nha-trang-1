@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return response()->json(['user_id' => $request->user()->id]);
-});
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/order/store', [OrderController::class, 'store']);
+    Route::put('/user/update', [UserController::class,'update']);
+});
+Route::middleware('auth:sanctum')->get('/orders', [OrderController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/user-profile', function (Request $request) {
+    return response()->json(['user_id' => $request->user()->id]);
 });

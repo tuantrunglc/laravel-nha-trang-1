@@ -10,7 +10,7 @@ class NotificationController extends Controller
     {
         $notifications = Notification::where('read', false)->get();
 
-        return view('admin.dashboard', compact('notifications'));
+        return view('admin.notifications', compact('notifications'));
     }
 
     public function markAsRead($id)
@@ -22,5 +22,12 @@ class NotificationController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+    public function showDashboard()
+    {
+        $notifications = Notification::where('read', false)->get();
+
+        return view('dashboard', compact('notifications'));
     }
 }

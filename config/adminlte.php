@@ -320,6 +320,11 @@ return [
             'url' => 'levels',
             'icon' => 'fas fa-fw fa-product-hunt',
         ],
+        [
+            'text' => 'Thông báo đơn hàng mới',
+            'url' => '/admin/notifications',
+            'icon' => 'fas fa-fw fa-bell',
+        ],
 
     ],
 

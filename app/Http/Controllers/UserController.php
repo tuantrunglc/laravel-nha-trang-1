@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     // Hiển thị danh sách users
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $query = User::query();
+
+        if ($request->has('phone') && $request->phone != '') {
+            $query->where('phone', 'like', '%' . $request->phone . '%');
+        }
+
+        $users = $query->paginate(10);
 
         return view('users.index', compact('users'));
     }
