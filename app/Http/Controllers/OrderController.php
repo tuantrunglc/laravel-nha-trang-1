@@ -73,7 +73,12 @@ class OrderController extends Controller
 
             // Trừ tiền từ ví của người dùng
             $user = $order->user; // Đảm bảo bạn đã thiết lập mối quan hệ trong model Order
-            $user->wallet -= $order->product->price; // Giả sử mỗi order chỉ có một sản phẩm
+            $level = $user->level; // Giả sử mối quan hệ level đã được thiết lập trong User model
+            $incomeMultiplier = Level::where('vip_level', $level)->first()->income ?? 0;
+        
+        // Tính toán và cập nhật thu nhập dựa vào level
+            $additionalIncome = $order->product->price * $incomeMultiplier;
+            $user->wallet += $additionalIncome;
             $user->save();
         }
     });

@@ -18,6 +18,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Phone</th>
+                    <th>Cấp độ Vip</th>
                     <th>Wallet</th>
                     <th>Actions</th>
                 </tr>
@@ -28,6 +29,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->phone }}</td>
+                    <td>Vip {{ $user->level }}</td>
                     <td>{{ $user->wallet }}</td>
                     <td>
                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-xs btn-default"><i class="fas fa-edit"></i></a>
