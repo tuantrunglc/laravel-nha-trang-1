@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -38,6 +37,7 @@ class ProductController extends Controller
             $product->image = $imagePath;
         }
         $product->save();
+
         return redirect()->route('products.index')
             ->with('success', 'Product created successfully.');
     }
@@ -69,12 +69,13 @@ class ProductController extends Controller
             if ($product->image) {
                 Storage::delete($product->image);
             }
-    
+
             $imagePath = $request->file('image')->store('product_images', 'public');
             $product->image = $imagePath;
         }
-    
+
         $product->save();
+
         return redirect()->route('products.index')
             ->with('success', 'Product updated successfully.');
     }

@@ -27,6 +27,7 @@ return new class extends Migration
         DB::table('levels')->where('vip_level', 9)->update(['minimum_amount' => 300000]);
         DB::table('levels')->where('vip_level', 10)->update(['minimum_amount' => 500000]);
     }
+
     /**
      * Reverse the migrations.
      */

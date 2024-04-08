@@ -26,7 +26,7 @@
                             @foreach ($products as $product)
                             <tr>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->price }} $</td>
                                 <td>
                                     <a href="{{ route('products.show', $product->id) }}" class="btn btn-info">Xem</a>
                                     <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Sửa</a>

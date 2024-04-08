@@ -17,8 +17,8 @@
             @foreach ($levels as $level)
             <tr>
                 <td>{{ $level->vip_level }}</td>
-                <td>{{ $level->income }}</td>
-                <td>{{ $level->minimum_amount }}</td>
+                <td>{{ $level->income }}%</td>
+                <td>{{ $level->minimum_amount }} $</td>
                 <td>
                     <a href="{{ route('levels.edit', $level->id) }}" class="btn btn-info">Edit</a>
                 </td>

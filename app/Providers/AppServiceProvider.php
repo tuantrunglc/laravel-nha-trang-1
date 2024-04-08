@@ -2,12 +2,11 @@
 
 namespace App\Providers;
 
-
+use App\Models\Notification;
 use App\Models\User;
 use App\Observers\UserObserver;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Models\Notification;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

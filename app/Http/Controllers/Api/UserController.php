@@ -29,7 +29,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = $user->createToken('PersonalAccess')->accessToken;
+        $token = $user->createToken('PersonalAccess')->plainTextToken;
 
         return response()->json(['user' => $user, 'token' => $token], 201);
     }
@@ -47,7 +47,7 @@ class UserController extends Controller
                 return response()->json(['message' => 'Tài khoản của bạn đã bị khóa'], 401);
             }
 
-            $token = $user->createToken('PersonalAccess')->accessToken;
+            $token = $user->createToken('PersonalAccess')->plainTextToken;
 
             return response()->json(['token' => $token], 200);
         } else {

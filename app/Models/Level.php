@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Level extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['vip_level ', 'income', 'minimum_amount', '_token'];
 }

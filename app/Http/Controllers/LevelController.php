@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Level;
+use Illuminate\Http\Request;
 
 class LevelController extends Controller
 {
@@ -13,6 +13,7 @@ class LevelController extends Controller
     public function index()
     {
         $levels = Level::all();
+
         return view('levels.index', compact('levels'));
     }
 
@@ -54,9 +55,9 @@ class LevelController extends Controller
     public function update(Request $request, Level $level)
     {
         $request->validate([
-            'vip_level' => 'required|integer|unique:levels,vip_level,' . $level->id,
+            'vip_level' => 'required|integer|unique:levels,vip_level,'.$level->id,
             'income' => 'required|numeric',
-            'minimum_amount' => 'required|numeric'
+            'minimum_amount' => 'required|numeric',
         ]);
 
         $level->update($request->all());

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class IsAdmin
 {
@@ -19,6 +20,6 @@ class IsAdmin
         }
 
         // Redirect không phải admin về trang chủ hoặc trang đăng nhập
-        return redirect('/');
+        return redirect('/login');
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Models\User;
 use App\Models\Level;
+use App\Models\User;
 
 class UserObserver
 {
@@ -46,16 +46,19 @@ class UserObserver
     {
         //
     }
-    public function updating(User $user)
-{
-    if ($user->isDirty('wallet')) { // Chỉ xử lý khi cột ví được thay đổi
-        // Lấy cấp độ VIP phù hợp cao nhất dựa trên số dư ví hiện tại
-        $level = Level::where('minimum_amount', '<=', $user->wallet)
-                      ->orderByDesc('minimum_amount') // Sắp xếp giảm dần theo yêu cầu tiền tối thiểu
-                      ->first();
 
-        // Cập nhật cấp độ VIP, nếu không tìm thấy phù hợp thì gán là 0
-        $user->level = $level ? $level->vip_level : 0;
+    public function updating(User $user)
+    {
+        if ($user->isDirty('wallet')) { // Chỉ xử lý khi cột ví được thay đổi
+            // Lấy cấp độ VIP phù hợp cao nhất dựa trên số dư ví hiện tại
+            $level = Level::where('minimum_amount', '<=', $user->wallet)
+                ->orderByDesc('minimum_amount') // Sắp xếp giảm dần theo yêu cầu tiền tối thiểu
+                ->first();
+
+            // Cập nhật cấp độ VIP chỉ khi cấp độ mới cao hơn cấp độ hiện tại
+            if ($level && $level->vip_level > $user->level) {
+                $user->level = $level->vip_level;
+            }
+        }
     }
-}
 }

@@ -320,7 +320,7 @@ return [
             'url' => 'levels',
             'icon' => 'fas fa-fw fa-product-hunt',
         ],
-       
+
     ],
 
     /*
